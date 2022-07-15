@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:id="@+id/myAppBar">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/men_category"
+        android:padding="6dp"
+        android:id="@+id/profile"
+    />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RemindApp"
+        android:layout_gravity="center"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textSize="26dp"
+        android:textStyle="bold"
+    />
+
+
+    <!--    <FrameLayout-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="right"-->
+    <!--        >-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/cart"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:src="@drawable/ic_shopping_cart"-->
+    <!--        android:layout_gravity="right"-->
+    <!--        android:layout_marginRight="25dp"-->
+    <!--        android:elevation="0dp"-->
+    <!--        />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_cartNumber"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:elevation="20dp"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:layout_marginBottom="6dp"-->
+    <!--            android:text="0"-->
+    <!--            android:textSize="13dp"-->
+    <!--            android:textColor="@android:color/holo_red_dark" />-->
+    <!--    </FrameLayout>-->
+</androidx.appcompat.widget.Toolbar>
