@@ -12,7 +12,7 @@
         android:src="@drawable/men_category"
         android:padding="6dp"
         android:id="@+id/profile"
-    />
+        />
 
     <TextView
         android:id="@+id/title"
@@ -23,7 +23,7 @@
         android:textColor="@android:color/holo_blue_bright"
         android:textSize="26dp"
         android:textStyle="bold"
-    />
+        />
 
 
     <!--    <FrameLayout-->
