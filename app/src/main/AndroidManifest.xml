@@ -12,7 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RemindApp_android">
         <activity
+            android:name=".AddReminderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignupActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
