@@ -43,7 +43,6 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         btn_signUp = findViewById(R.id.btn_signUp);
-        btn_signUp.setBackgroundColor(Color.parseColor("#0000ff"));
         tv_signIn = findViewById(R.id.tV_SignIn);
         mAuth = FirebaseAuth.getInstance();
         myDatabase = FirebaseFirestore.getInstance();
@@ -61,7 +60,7 @@ public class SignupActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        
+
         btn_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,8 +118,21 @@ public class SignupActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(password)) {
             et_userPassword.setError("Password is Required");
             return false;
-        }else if(password.length() < 6){
-            et_userPassword.setError("Password is too short!");
+        }else if(password.length() < 8){
+            et_userPassword.setError("Password min 8 characters!");
+            return false;
+            // for Uppercase
+        }else if( !password.matches("(.*[A-Z].*)")){
+            et_userPassword.setError("Password at least one uppercase ");
+            return false;
+            //for number
+        }else if( !password.matches("(.*[0-9].*)")) {
+            et_userPassword.setError("Password at least one number ");
+            return false;
+        }
+        //  for special Character
+        else if(!password.matches("(.*[!@#$&*].*)")){
+            et_userPassword.setError("Password at least one special character");
             return false;
         }
         else{
@@ -137,8 +149,8 @@ public class SignupActivity extends AppCompatActivity {
             return true;
         }
         else{
-           et_userConfirmPassword.setError("Password doesn't match");
-           return false;
+            et_userConfirmPassword.setError("Password doesn't match");
+            return false;
         }
     }
 
@@ -159,14 +171,13 @@ public class SignupActivity extends AppCompatActivity {
         userdataMap.put("email", email);
         userdataMap.put("phone", phone);
         userdataMap.put("name", name);
-        userdataMap.put("password", password);
 
-        myDatabase.collection("users").add(userdataMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                myDatabase.collection("users").document(mAuth.getCurrentUser().getUid()).set(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()) {
                             Toast.makeText(SignupActivity.this, "Congratulations your account is created", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
@@ -180,5 +191,25 @@ public class SignupActivity extends AppCompatActivity {
                 });
             }
         });
+
+//        myDatabase.collection("users").add(userdataMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentReference> task) {
+//                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if(task.isSuccessful()) {
+//                            Toast.makeText(SignupActivity.this, "Congratulations your account is created", Toast.LENGTH_SHORT).show();
+//                            loadingBar.dismiss();
+//                            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+//                            startActivity(intent);
+//                        }else {
+//                            loadingBar.dismiss();
+//                            Toast.makeText(SignupActivity.this, "Error, Please try again!", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+//            }
+//        });
     }
 }
