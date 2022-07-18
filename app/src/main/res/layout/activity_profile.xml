@@ -13,6 +13,91 @@
         layout="@layout/appbar"
         />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_userAccountEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:layout_margin="15dp"
+        app:boxStrokeColor="@color/black"
+        android:hint="Email"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/email"
+        app:hintTextColor="@android:color/holo_red_dark"
+        app:errorTextColor="@android:color/holo_red_dark"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tf_userAccountEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/main"
+            android:textSize="20dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_userAccountName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:hint="Name"
+        android:layout_margin="15dp"
+        app:boxStrokeColor="@color/black"
+        app:errorTextColor="@android:color/holo_red_dark"
+        app:hintTextColor="@android:color/holo_red_dark"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@color/main"
+            android:textSize="20dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_userAccountPhone"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:hint="Phone Number"
+        android:layout_margin="15dp"
+        app:prefixText="+1"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/phone"
+        app:boxStrokeColor="@color/black"
+        app:errorTextColor="@android:color/holo_red_dark"
+        app:hintTextColor="@android:color/holo_red_dark"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tf_userAccountPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:ems="10"
+            android:inputType="number"
+            android:textColor="@color/main"
+            android:textSize="20dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_changePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password?"
+        android:textSize="20dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="35dp"
+        />
+
     <Button
         android:id="@+id/btn_signOut"
         android:layout_width="180dp"
@@ -21,6 +106,7 @@
         android:layout_gravity="center"
         android:capitalize="none"
         android:text="signout"
+        android:backgroundTint="@color/main"
         android:textColor="@android:color/white"
         android:textSize="24dp"
         />
