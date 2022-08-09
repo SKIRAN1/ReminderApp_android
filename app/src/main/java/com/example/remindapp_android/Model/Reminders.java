@@ -1,5 +1,6 @@
 package com.example.remindapp_android.Model;
 
+
 import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -14,8 +15,13 @@ public class Reminders implements Parcelable {
     String id;
     GeoPoint location;
 
+public class Reminders {
+    String title,notes,date;
+
+
     public Reminders() {
     }
+
 
     public Reminders(String title, String notes, String date, String id, GeoPoint location) {
         this.title = title;
@@ -60,6 +66,12 @@ public class Reminders implements Parcelable {
 
     public void setLocation(GeoPoint location) {
         this.location = location;
+
+    public Reminders(String title, String notes, String date) {
+        this.title = title;
+        this.notes = notes;
+        this.date = date;
+
     }
 
     public String getTitle() {
@@ -85,6 +97,7 @@ public class Reminders implements Parcelable {
     public void setDate(String date) {
         this.date = date;
     }
+
     public String getId() {
         return id;
     }
@@ -92,5 +105,6 @@ public class Reminders implements Parcelable {
     public void setId(String id) {
         this.id = id;
     }
+
 
 }

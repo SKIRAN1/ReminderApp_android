@@ -8,7 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import androidx.recyclerview.widget.ItemTouchHelper;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.remindapp_android.Model.Reminders;
@@ -51,7 +53,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
     public int getItemCount() {
         return reminders.size();
     }
-
 
 
 

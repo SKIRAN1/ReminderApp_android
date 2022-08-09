@@ -11,7 +11,7 @@
         />
     <fragment
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:id="@+id/map"
+        android:id="@+id/map2"
         android:layout_below="@+id/myAppBar"
         android:layout_width="match_parent"
         android:layout_height="350dp"/>
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView"
-        android:layout_below="@+id/map"
+        android:layout_below="@+id/map2"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/et_reminderTitle"
+                    android:id="@+id/et_userReminderTitle"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -72,7 +72,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/et_reminderDescription"
+                    android:id="@+id/et_userReminderDescription"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -107,7 +107,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/et_reminderDate"
+                    android:id="@+id/et_userReminderDate"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="300dp"
                     android:layout_height="match_parent"
@@ -140,17 +140,15 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btn_addReminder"
-        android:layout_width="250dp"
+        android:id="@+id/btn_updateReminder"
+        android:layout_width="270dp"
         android:layout_height="60dp"
         android:layout_below="@+id/scrollView"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/main"
-        android:text="AddReminder"
+        android:text="UpdateReminder"
         android:textColor="@android:color/white"
         android:textSize="24dp" />
-
-
 
 </RelativeLayout>

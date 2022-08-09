@@ -1,17 +1,25 @@
 package com.example.remindapp_android;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.location.Location;
+
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -24,6 +32,10 @@ import com.example.remindapp_android.Model.Reminders;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+
+import com.example.remindapp_android.Adapter.HomeAdapter;
+import com.example.remindapp_android.Model.Reminders;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -37,6 +49,10 @@ import java.util.ArrayList;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity {
 
     ImageView profile;
@@ -48,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
 
     FirebaseFirestore myDatabase;
     FirebaseAuth mAuth;
+
     Location location;
 
     @Override
@@ -67,8 +84,10 @@ public class HomeActivity extends AppCompatActivity {
         rcViewHome.setAdapter(homeAdapter);
         rcViewHome.setHasFixedSize(true);
         btn_addReminder = (FloatingActionButton) findViewById(R.id.btn_createReminder);
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(rcViewHome);
+
 
 
 
@@ -98,6 +117,7 @@ public class HomeActivity extends AppCompatActivity {
 
         GetReminders();
     }
+
 
     ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
         @Override
@@ -153,11 +173,17 @@ public class HomeActivity extends AppCompatActivity {
 
     private void GetReminders() {
         myDatabase.collection("Reminders").document(mAuth.getCurrentUser().getUid()).collection("userReminders").addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+    private void GetReminders() {
+        myDatabase.collection("reminders").document(mAuth.getCurrentUser().getUid()).collection("userReminders").addSnapshotListener(new EventListener<QuerySnapshot>() {
+
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
                 for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()){
                     Reminders reminder = documentSnapshot.toObject(Reminders.class);
+
                     reminder.setId(documentSnapshot.getId());
+
                     reminders.add(reminder);
                     homeAdapter.notifyDataSetChanged();
                 }
