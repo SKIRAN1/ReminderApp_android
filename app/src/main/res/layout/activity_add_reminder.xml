@@ -4,129 +4,139 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddReminderActivity">
+    tools:context=".AddReminderActivity"
+    >
     <include
         layout="@layout/appbar"
         />
+    <fragment
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/map"
+        android:layout_below="@+id/myAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"/>
     <ScrollView
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView"
-        android:layout_below="@+id/myAppBar"
+        android:layout_below="@+id/map"
         >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        >
-    <LinearLayout
-        android:id="@+id/titleLayout"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/logo"
-        >
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_reminderTitle"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Title"
-            app:boxStrokeColor="@color/black"
-            app:endIconMode="custom"
-            app:helperTextTextColor="@android:color/holo_red_dark"
-            app:errorTextColor="@android:color/holo_red_dark"
-            app:hintTextColor="@android:color/holo_red_dark"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textCursorDrawable="@color/black"
-                android:ems="10"
-                android:inputType="text"
-                android:textColor="@color/main"
-                android:textSize="20dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/descriptionLayout"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/titleLayout"
-        android:layout_marginTop="15dp"
-        >
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_reminderDescription"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Description"
-            app:boxStrokeColor="@color/black"
-            app:errorTextColor="@color/main"
-            app:hintTextColor="@android:color/holo_red_dark"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textCursorDrawable="@color/black"
-                android:ems="10"
-                android:inputType="text"
-                android:textColor="@color/main"
-                android:textSize="20dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-    </LinearLayout>
         <LinearLayout
-            android:id="@+id/dateLayout"
-            android:layout_width="360dp"
-            android:layout_height="60dp"
-            android:layout_centerInParent="true"
-            android:layout_below="@+id/titleLayout"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
             >
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_reminderDate"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="300dp"
-                android:layout_height="match_parent"
-                android:hint="Date"
-                app:boxStrokeColor="@color/black"
-                app:errorTextColor="@color/main"
-                app:hintTextColor="@android:color/holo_red_dark"
+            <LinearLayout
+                android:id="@+id/titleLayout"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/logo"
                 >
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/et_reminderTitle"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textCursorDrawable="@color/black"
-                    android:ems="10"
-                    android:editable="false"
-                    android:textColor="@color/main"
-                    android:textSize="20dp" />
+                    android:layout_height="match_parent"
+                    android:hint="Title"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
+                    app:endIconMode="custom"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintTextColor="@android:color/holo_red_dark"
+                    >
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textCursorDrawable="@color/black"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:textColor="@color/main"
+                        android:textSize="20dp" />
 
-            <ImageView
-                android:id="@+id/btn_calender"
-                android:layout_width="60dp"
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/descriptionLayout"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/titleLayout"
+                android:layout_marginTop="15dp"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/et_reminderDescription"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Description"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
+                    app:errorTextColor="@color/main"
+                    app:hintTextColor="@android:color/holo_red_dark"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textCursorDrawable="@color/black"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:textColor="@color/main"
+                        android:textSize="20dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/dateLayout"
+                android:layout_width="360dp"
                 android:layout_height="60dp"
-                android:src="@drawable/calendar"
-                />
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/titleLayout"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/et_reminderDate"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:hint="Date"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
+                    app:errorTextColor="@color/main"
+                    app:hintTextColor="@android:color/holo_red_dark"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textCursorDrawable="@color/black"
+                        android:ems="10"
+                        android:editable="false"
+                        android:textColor="@color/main"
+                        android:textSize="20dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/btn_calender"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/calendar"
+                    />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
     </ScrollView>
 
     <Button
