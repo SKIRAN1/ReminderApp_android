@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:orientation="vertical"
+    android:background="@color/white"
     >
     <ImageView
         android:id="@+id/imageView"
@@ -39,6 +40,7 @@
         app:boxStrokeColor="@color/black"
         android:layout_gravity="center"
         android:hint="Email"
+        android:textColorHint="@color/black"
         app:endIconMode="custom"
         app:endIconDrawable="@drawable/email"
         app:hintTextColor="@android:color/holo_red_dark"
@@ -68,6 +70,7 @@
         android:layout_marginTop="28dp"
         android:layout_gravity="center"
         android:hint="Password"
+        android:textColorHint="@color/black"
         app:hintTextColor="@android:color/holo_red_dark"
         app:boxStrokeColor="@color/black"
         app:passwordToggleEnabled="true"
@@ -92,7 +95,7 @@
         android:layout_gravity="center"
         android:backgroundTint="@color/main"
         android:layout_marginTop="32dp"
-        android:capitalize="none"
+        android:textAllCaps="false"
         android:text="LogIn"
         android:textColor="@android:color/white"
         android:textSize="24dp" />
@@ -150,11 +153,11 @@
         android:layout_gravity="center"
         />
     <ImageView
+        android:id="@+id/btn_googleLogin"
         android:layout_marginTop="10dp"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@drawable/googlelogo"
         android:layout_gravity="center"
         />
-
 </LinearLayout>

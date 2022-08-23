@@ -9,14 +9,17 @@
     <include
         layout="@layout/appbar"
         />
+
     <fragment
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
-        android:layout_below="@+id/myAppBar"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="350dp"/>
+        android:layout_height="350dp"
+        android:layout_below="@+id/myAppBar" />
     <ScrollView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView"
@@ -28,6 +31,19 @@
             android:orientation="vertical"
             android:gravity="center"
             >
+            <fragment android:id="@+id/autocomplete_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                />
+
+            <!--        <Button-->
+            <!--            android:id="@+id/btn_search"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:text="Search"-->
+            <!--            />-->
+
             <LinearLayout
                 android:id="@+id/titleLayout"
                 android:layout_width="360dp"
@@ -85,7 +101,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:textCursorDrawable="@color/black"
                         android:ems="10"
                         android:inputType="text"
@@ -99,7 +115,7 @@
             <LinearLayout
                 android:id="@+id/dateLayout"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_below="@+id/titleLayout"
                 android:layout_marginTop="15dp"
@@ -136,21 +152,30 @@
                     android:src="@drawable/calendar"
                     />
             </LinearLayout>
+            <Button
+                android:id="@+id/btn_addReminder"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_below="@+id/scrollView"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/main"
+                android:text="AddReminder"
+                android:textColor="@android:color/white"
+                android:textSize="24dp" />
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btn_addReminder"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/scrollView"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/main"
-        android:text="AddReminder"
-        android:textColor="@android:color/white"
-        android:textSize="24dp" />
-
-
+    <!--    <Button-->
+    <!--        android:id="@+id/btn_addReminder"-->
+    <!--        android:layout_width="250dp"-->
+    <!--        android:layout_height="60dp"-->
+    <!--        android:layout_below="@+id/scrollView"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:backgroundTint="@color/main"-->
+    <!--        android:text="AddReminder"-->
+    <!--        android:textColor="@android:color/white"-->
+    <!--        android:textSize="24dp" />-->
 
 </RelativeLayout>
