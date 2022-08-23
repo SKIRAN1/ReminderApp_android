@@ -165,7 +165,7 @@ public class UpdateReminderActivity extends AppCompatActivity implements OnMapRe
                 .position(Montreal)
                 .title("Marker"));
         map.moveCamera(CameraUpdateFactory.newLatLng(Montreal));
-//        map.animateCamera(CameraUpdateFactory.newLatLngZoom(Montreal , 15f));
+
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(@NonNull LatLng latLng) {
@@ -255,4 +255,3 @@ public class UpdateReminderActivity extends AppCompatActivity implements OnMapRe
     }
 
 
-}

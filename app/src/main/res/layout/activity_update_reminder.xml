@@ -10,8 +10,7 @@
         layout="@layout/appbar"
         />
     <fragment
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/map2"
         android:layout_below="@+id/myAppBar"
