@@ -2,11 +2,13 @@ package com.example.remindapp_android;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -26,6 +29,13 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.RectangularBounds;
+import com.google.android.libraries.places.api.model.TypeFilter;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputLayout;
@@ -35,9 +45,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -52,21 +64,55 @@ public class AddReminderActivity extends AppCompatActivity implements OnMapReady
     Button btn_addReminder;
     Calendar calendar;
     SupportMapFragment supportMapFragment;
-
+    String apikey;
     GoogleMap map;
     LatLng location;
-
+    LatLng Montreal = new LatLng(45.480940, -73.624070);
     private ProgressDialog loadingBar;
-
+//    private static int AUTOCOMPLETE_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
+        apikey = "AIzaSyAtE3XUkS_CIw8lTVu-8bZXi_LtsvmO4jc";
+        Places.initialize(getApplicationContext(), apikey);
+        PlacesClient placesClient = Places.createClient(this);
         tv_title = findViewById(R.id.title);
         profile = findViewById(R.id.profile);
         btn_addReminder = findViewById(R.id.btn_addReminder);
         loadingBar = new ProgressDialog(this);
+
+//        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+        AutocompleteSupportFragment autocompleteSupportFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        autocompleteSupportFragment.setTypeFilter(TypeFilter.ADDRESS);
+//        autocompleteSupportFragment.setLocationBias(RectangularBounds.newInstance(
+//                new
+//        ));
+        autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onError(@NonNull Status status) {
+                Toast.makeText(AddReminderActivity.this, "Error" + status, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+//                AddPlace(place);
+//              Montreal = place.getLatLng();
+//              map.addMarker(new MarkerOptions()
+//                      .position(Montreal)
+//              );
+//              supportMapFragment.getMapAsync(AddReminderActivity.this);
+//                if (place.getLatLng() != null) {
+////                    Montreal = place.getLatLng();
+////                    supportMapFragment.getMapAsync(AddReminderActivity.this);
+//////                    map.addMarker(new MarkerOptions()
+//////                            .position(place.getLatLng()));
+////                    Toast.makeText(AddReminderActivity.this, place.getAddress().toString(), Toast.LENGTH_SHORT).show();
+//                }
+            }
+        });
         myDatabase = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         et_reminderDescription = (TextInputLayout) findViewById(R.id.et_reminderDescription);
@@ -96,6 +142,10 @@ public class AddReminderActivity extends AppCompatActivity implements OnMapReady
             }
         };
 
+        DatePickerDialog datePickerDialog = new DatePickerDialog(AddReminderActivity.this,date,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+
+
         tv_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,7 +173,8 @@ public class AddReminderActivity extends AppCompatActivity implements OnMapReady
 //                        et_reminderDate.getEditText().setText(date);
 //                    }
 //                });
-                new DatePickerDialog(AddReminderActivity.this,date,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+                datePickerDialog.show();
+
             }
         });
 
@@ -133,6 +184,13 @@ public class AddReminderActivity extends AppCompatActivity implements OnMapReady
                 Validation();
             }
         });
+    }
+
+    private void AddPlace(Place place) {
+//        map.addMarker(new MarkerOptions()
+//                .position(place.getLatLng())
+//        );
+//        supportMapFragment.getMapAsync(AddReminderActivity.this);
     }
 
     private void updateCalendar() {
@@ -216,11 +274,11 @@ public class AddReminderActivity extends AppCompatActivity implements OnMapReady
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         map = googleMap;
-        LatLng Montreal = new LatLng(45.480940, -73.624070);
         map.addMarker(new MarkerOptions()
                 .position(Montreal)
                 .title("Marker"));
         map.moveCamera(CameraUpdateFactory.newLatLng(Montreal));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(Montreal , 15.3f));
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(@NonNull LatLng latLng) {
@@ -230,4 +288,5 @@ public class AddReminderActivity extends AppCompatActivity implements OnMapReady
             }
         });
     }
+
 }

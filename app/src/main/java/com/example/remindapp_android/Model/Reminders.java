@@ -1,14 +1,4 @@
-
 package com.example.remindapp_android.Model;
-
-import android.location.Location;
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.firebase.firestore.GeoPoint;
-
-=======
-package com.example.remindapp_android.Model;
-
 
 import android.location.Location;
 import android.os.Parcel;
@@ -24,13 +14,8 @@ public class Reminders implements Parcelable {
     String id;
     GeoPoint location;
 
-public class Reminders {
-    String title,notes,date;
-
-
     public Reminders() {
     }
-
 
     public Reminders(String title, String notes, String date, String id, GeoPoint location) {
         this.title = title;
@@ -41,15 +26,15 @@ public class Reminders {
     }
 
     protected Reminders(Parcel in) {
-       Double lat = in.readDouble();
-       Double lng = in.readDouble();
-       location = new GeoPoint(lat,lng);
+        Double lat = in.readDouble();
+        Double lng = in.readDouble();
+        location = new GeoPoint(lat,lng);
     }
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-       parcel.writeDouble(location.getLatitude());
-       parcel.writeDouble(location.getLongitude());
+        parcel.writeDouble(location.getLatitude());
+        parcel.writeDouble(location.getLongitude());
     }
 
     @Override
@@ -75,12 +60,6 @@ public class Reminders {
 
     public void setLocation(GeoPoint location) {
         this.location = location;
-
-    public Reminders(String title, String notes, String date) {
-        this.title = title;
-        this.notes = notes;
-        this.date = date;
-
     }
 
     public String getTitle() {
@@ -106,7 +85,6 @@ public class Reminders {
     public void setDate(String date) {
         this.date = date;
     }
-
     public String getId() {
         return id;
     }
@@ -114,7 +92,6 @@ public class Reminders {
     public void setId(String id) {
         this.id = id;
     }
-
 
 }
 

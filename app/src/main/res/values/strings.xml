@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">RemindApp_android</string>
+    <string name="mapkey" translatable="false">
+        AIzaSyAtE3XUkS_CIw8lTVu-8bZXi_LtsvmO4jc
+    </string>
 </resources>
