@@ -10,6 +10,7 @@
         layout="@layout/appbar"
         />
     <fragment
+
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/map2"
         android:layout_below="@+id/myAppBar"
